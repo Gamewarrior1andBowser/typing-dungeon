@@ -1,0 +1,159 @@
+@charset "utf-8";
+@import "reset.css";
+
+.container {
+  width: min(100% - 30px, 1080px);
+  padding: 10px;
+  background-color: #EEEEEE;
+  display: flex;
+  position: absolute;
+  left: 6%;
+  top: 6%;
+}
+
+main, .map {
+  width: 900px;
+  height: 800px;
+}
+
+.map, .menu, .battle, .pause {
+  position: relative;
+}
+
+.map {
+  width: 120%;
+}
+
+.battle {
+  width: 114%;
+  height: 750px;
+  bottom: 98%;
+  left: 3%;
+  z-index: 2;
+}
+
+.pause {
+  background-color: #b9895b;
+  border-radius: 10px;
+  font-size: 26px;
+  font-weight: 800;
+  bottom: 223%;
+  right: 1.4%;
+  padding: 5px 15px;
+  z-index: 5;
+}
+
+.grid {
+  display: grid;
+  place-items: center;
+}
+
+.menu {
+  width: 500px;
+  left: 33%;
+  bottom: 155%;
+  background-color: #b9895b;
+  padding: 10px;
+  z-index: 3;
+  border: 3px, solid #423522;
+  border-radius: 20px;
+  place-content: center;
+  visibility: hidden;
+}
+
+.menu div button {
+  background: none;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.map, .container, .battle, .pause {
+  display: flex;
+}
+
+.map, .container {
+  align-self: center;
+  align-items: center;
+  align-content: center;
+}
+
+.map, .battle, .container {
+  border: 2px, solid #000000;
+}
+
+img {
+  width: 300%;
+}
+
+div {
+  display: flex;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.sprite {
+  width: 96px;
+  height: 96px;
+  background-repeat: no-repeat;
+  background-size: 96px 96px;
+}
+
+.leo {
+  background-image: url(../media/leo_idle0.png);
+}
+
+.blaster {
+  background-image: url(../media/blaster_idle0.png);
+}
+
+.goblin {  
+  background-image: url(../media/goblin_idle0.png);
+}
+
+.skeleton {
+  background-image: url(../media/skeleton_idle0.png);
+}
+
+@keyframes leo_idle {
+  0%, 100% {background-image: url(../media/leo_idle0.png)};
+  50% {background-image: url(../media/leo_idle1.png)};
+}
+
+@keyframes blaster_idle {
+  0%, 100% {background-image: url(../media/blaster_idle0.png)};
+  50% {background-image: url(../media/blaster_idle1.png)};
+}
+
+@keyframes goblin_idle {
+  0%, 100% {background-image: url(../media/goblin_idle0.png)};
+  50% {background-image: url(../media/goblin_idle1.png)};
+}
+
+@keyframes skeleton_idle {
+  0%, 100% {background-image: url(../media/skeleton_idle0.png)};
+  50% {background-image: url(../media/skeleton_idle1.png)};
+}
+
+@keyframes leo_walk {
+  0%, 100% {background-image: url(../media/leo_walk0.png)};
+  50% {background-image: url(../media/leo_walk1.png)};
+}
+
+@keyframes blaster_walk {
+  0%, 100% {background-image: url(../media/blaster_walk0.png)};
+  50% {background-image: url(../media/blaster_walk1.png)};
+}
+
+@keyframes goblin_walk {
+  0%, 100% {background-image: url(../media/goblin_walk0.png)};
+  50% {background-image: url(../media/goblin_walk1.png)};
+}
+
+@keyframes skeleton_walk {
+  0%, 100% {background-image: url(../media/skeleton_walk0.png)};
+  50% {background-image: url(../media/skeleton_walk1.png)};
+}

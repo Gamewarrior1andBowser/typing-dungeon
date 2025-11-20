@@ -5,13 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
-    <link rel="stylesheet" href="./assets/style/game.css" />
-    <script src="./assets/script/app.js" type="module"></script>
+    <link rel="stylesheet" href="./assets/style/index.css" />
+    <script src="./assets/script/game.js" type="module"></script>
     <link rel="icon" href="./assets/media/favicon.png" type="image/x-icon">
     <title>Test</title>
     <script src="./assets/script/app.js"></script>
   </head>
   <body>
-    
+    <div class="container">
+      <main>
+        <div class="map"><div class="grid">
+          
+        </div></div>
+
+        <div class="battle"><div class="grid">
+          <i class="Leo sprite leo_idle"></i>
+          <i class="Enemy1 sprite goblin_idle"></i>
+          <i class="Enemy2 sprite blaster_idle"></i>
+          <i class="Enemy3 sprite skeleton_idle"></i>
+        </div></div>
+        <div class="menu visible"><div class="grid">
+          <h1>Project Avalon</h1>
+          <h2>Paused</h2>
+          <button>Resume</button>
+        </div></div>
+        <button class="pause">II</button>
+      </main>
+    </div>
   </body>
 </html>
