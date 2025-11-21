@@ -5,31 +5,31 @@
   width: min(100% - 30px, 1080px);
   padding: 10px;
   background-color: #EEEEEE;
-  display: flex;
-  position: absolute;
-  left: 6%;
-  top: 6%;
+  top: 5px;
 }
 
-main, .map {
-  width: 900px;
+.map {
   height: 800px;
 }
 
-.map, .menu, .battle, .pause {
+header {
+  background-color: #808080;
+  height: 65px;
+}
+
+main {
+  background-image: url(../media/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 875px;
+}
+
+.map, .pause, .container {
   position: relative;
 }
 
 .map {
-  width: 120%;
-}
-
-.battle {
-  width: 114%;
-  height: 750px;
-  bottom: 98%;
-  left: 3%;
-  z-index: 2;
+  width: 100%;
 }
 
 .pause {
@@ -37,9 +37,9 @@ main, .map {
   border-radius: 10px;
   font-size: 26px;
   font-weight: 800;
-  bottom: 223%;
-  right: 1.4%;
   padding: 5px 15px;
+  left: 5px;
+  top: 5px;
   z-index: 5;
 }
 
@@ -49,9 +49,9 @@ main, .map {
 }
 
 .menu {
-  width: 500px;
-  left: 33%;
-  bottom: 155%;
+  position: fixed;
+  width: 75%;
+  bottom: 45%;
   background-color: #b9895b;
   padding: 10px;
   z-index: 3;
@@ -59,6 +59,10 @@ main, .map {
   border-radius: 20px;
   place-content: center;
   visibility: hidden;
+}
+
+.menu h2 {
+  margin-top: 20px;
 }
 
 .menu div button {
@@ -69,17 +73,17 @@ main, .map {
   font-size: 16px;
 }
 
-.map, .container, .battle, .pause {
+.map, .container, .pause {
   display: flex;
 }
 
 .map, .container {
-  align-self: center;
-  align-items: center;
-  align-content: center;
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
 }
 
-.map, .battle, .container {
+.map, .container, .pause {
   border: 2px, solid #000000;
 }
 
@@ -100,6 +104,7 @@ div {
   height: 96px;
   background-repeat: no-repeat;
   background-size: 96px 96px;
+  z-index: 3;
 }
 
 .leo {
