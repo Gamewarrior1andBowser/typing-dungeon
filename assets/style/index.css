@@ -8,6 +8,22 @@
   top: 5px;
 }
 
+.t {
+  background-image: url(../media/t.png);
+}
+
+.d {
+  background-image: url(../media/d.png);
+}
+
+.t, .d {
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+  left: 10px;
+}
+
 .map {
   height: 800px;
 }
@@ -17,6 +33,13 @@ header {
   height: 65px;
 }
 
+header .title {
+  width: 300px;
+  left: 20%;
+  text-align: center;
+  top: 5px;
+}
+
 main {
   background-image: url(../media/background.jpg);
   background-repeat: no-repeat;
@@ -24,7 +47,7 @@ main {
   height: 875px;
 }
 
-.map, .pause, .container {
+.map, .pause, .container, header .title, .t, .d {
   position: relative;
 }
 
@@ -40,6 +63,7 @@ main {
   padding: 5px 15px;
   left: 5px;
   top: 5px;
+  height: 55px;
   z-index: 5;
 }
 
@@ -73,7 +97,7 @@ main {
   font-size: 16px;
 }
 
-.map, .container, .pause {
+.map, .container, .pause, header {
   display: flex;
 }
 
