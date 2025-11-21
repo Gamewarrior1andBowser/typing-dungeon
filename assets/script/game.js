@@ -11,7 +11,7 @@ pause.addEventListener("click", function() {
   menu.classList.toggle("visible");
   if (isPaused == false) {
     isPaused = true;
-    pause.innerText = "I)";
+    pause.innerText = "D";
   } else {
     isPaused = false;
     pause.innerText = "II";
