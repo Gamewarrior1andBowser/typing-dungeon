@@ -5,15 +5,26 @@
   width: min(100% - 30px, 1080px);
   padding: 10px;
   background-color: #EEEEEE;
-  display: flex;
-  position: absolute;
+  top: 5px;
 }
 
-main, .map {
+.map {
   height: 800px;
 }
 
-.map, .pause {
+header {
+  background-color: #808080;
+  height: 65px;
+}
+
+main {
+  background-image: url(../media/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 875px;
+}
+
+.map, .pause, .container {
   position: relative;
 }
 
@@ -27,7 +38,8 @@ main, .map {
   font-size: 26px;
   font-weight: 800;
   padding: 5px 15px;
-  margin: 5px;
+  left: 5px;
+  top: 5px;
   z-index: 5;
 }
 
