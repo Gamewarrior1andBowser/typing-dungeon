@@ -4,7 +4,6 @@
 .container {
   width: min(100% - 30px, 1080px);
   padding: 10px;
-  background-color: #EEEEEE;
   top: 5px;
 }
 
@@ -34,8 +33,7 @@ header {
 }
 
 header .title {
-  width: 300px;
-  left: 20%;
+  left: 23%;
   text-align: center;
   top: 5px;
 }
@@ -43,16 +41,19 @@ header .title {
 main {
   background-image: url(../media/background.jpg);
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   height: 875px;
+  z-index: -2;
 }
 
-.map, .pause, .container, header .title, .t, .d {
+.map, .pause, .container, header .title, .t, .d, .sprite {
   position: relative;
 }
 
 .map {
   width: 100%;
+  background-color: #ffffff;
 }
 
 .pause {
@@ -64,7 +65,6 @@ main {
   left: 5px;
   top: 5px;
   height: 55px;
-  z-index: 5;
 }
 
 .grid {
@@ -78,7 +78,7 @@ main {
   bottom: 45%;
   background-color: #b9895b;
   padding: 10px;
-  z-index: 3;
+  z-index: 5;
   border: 3px, solid #423522;
   border-radius: 20px;
   place-content: center;
@@ -107,7 +107,7 @@ main {
   justify-content: center;
 }
 
-.map, .container, .pause {
+.map, .pause {
   border: 2px, solid #000000;
 }
 
