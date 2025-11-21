@@ -1,9 +1,29 @@
 'use strict';
 
-let isPaused = true;
+let isPaused = false;
 let timeout = false;
 let enemies = 0;
 
+const pause = document.querySelector(".pause");
+const menu = document.querySelector(".menu");
+
+pause.addEventListener("click", function() {
+  menu.classList.toggle("visible");
+  if (isPaused == false) {
+    isPaused = true;
+    pause.innerText = "I>";
+  } else {
+    isPaused = false;
+    pause.innerText = "II";
+  }
+});
+
+
+
+
+
+
+/* Animation and physic code for extra stuff later on...
 //index 0 is Idle, index 1 is walk, index 2 is attack, index 3 victory (3 is not mandatory for everyone);
 const spritesLeo = ["leo_idle", "leo_walk"];
 const spritesGoblin = ["goblin_idle", "goblin_walk"];
@@ -78,3 +98,4 @@ while (isPaused == false && timeout == false) {
     timeout = false;
   }, 1000)
 }
+*/

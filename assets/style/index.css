@@ -49,6 +49,10 @@ main, .map {
   visibility: hidden;
 }
 
+.menu h2 {
+  margin-top: 20px;
+}
+
 .menu div button {
   background: none;
   font-weight: 600;
