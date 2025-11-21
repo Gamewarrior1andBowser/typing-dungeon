@@ -1,7 +1,6 @@
 'use strict';
 
-let isPaused = false;
-let inBattle = true;
+let isPaused = true;
 let timeout = false;
 let enemies = 0;
 
@@ -66,7 +65,7 @@ const Goblin = new Character(
 const Skeleton = new Character(
   'Skeleton', spritesSkeleton, iconEnemy3
 )
-const Blaster = new Enemy(
+const Blaster = new Character(
   'Blaster', spritesBlaster, iconEnemy2
 )
 
