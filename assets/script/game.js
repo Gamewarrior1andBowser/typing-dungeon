@@ -5,7 +5,7 @@ let inBattle = true;
 let timeout = false;
 let enemies = 0;
 
-//index 0 is Idle, index 1 is walk, index 2 is attack, index 3 victory (not mandatory for everyone);
+//index 0 is Idle, index 1 is walk, index 2 is attack, index 3 victory (3 is not mandatory for everyone);
 const spritesLeo = ["leo_idle", "leo_walk"];
 const spritesGoblin = ["goblin_idle", "goblin_walk"];
 const spritesSkeleton = ["skeleton_idle", "skeleton_walk"];
@@ -19,36 +19,9 @@ const iconEnemy3 = document.getElementById('Enemy3');
 const objects = [iconLeo, iconEnemy1];
 const characters = [];
 
-class Item {
-  #name = "";
-  #icon = "";
-  #action = "";
-  #passive = false;
-  constructor(name, icon, action, passive) {
-    this.#name = name;
-    this.#icon = icon;
-    this.#action = action;
-    this.#passive = passive
-  }
-
-  get name() {
-    return this.name;
-  }
-
-  use() {
-    if (this.#action == "heal") {
-
-    } else if (this.#action == "equip") {
-
-    } else {
-      
-    }
-  }
-}
-
 class Character {
-  maxHealth = 10;
-  health = 10;
+  maxHealth = 3;
+  health = 3;
   atk = 1;
   defense = 1;
   #spriteSheet = [];
@@ -84,57 +57,18 @@ class Character {
   }
 }
 
-class Hero extends Character {
-  #lName = "";
-  #race = "";
-  level = 1;
-  #job = "";
-
-  constructor(firstName, lastName, race, job, spriteSheet) {
-    super(firstName, spriteSheet);
-    characters.push(this);
-    this.#lName = lastName;
-    this.#race = race;
-    this.#job = job;
-  }
-
-  //methods
-  get lName() {
-    return this.lName;
-  }
-
-  get job() {
-    return this.job;
-  }
-
-  getBio() {
-    return `${this.getName()} ${this.lName} (Level: ${this.level} ${this.race} ${this.job})`;
-  }
-}
-class Enemy extends Character {
-  constructor(name, spriteSheet, object) {
-    characters.push(this);
-    enemies += 1;
-    super(name, spriteSheet);
-  }
-
-  //methods
-}
-
-const Leo = new Hero(
-  'Leo', 'Northstar', 'Eternian-Cat', 'Adventurer', spritesLeo
+const Leo = new Character(
+  'Leo', spritesLeo, iconLeo
 );
-const Goblin = new Enemy(
+const Goblin = new Character(
   'Goblin', spritesGoblin, iconEnemy1
 )
-const Skeleton = new Enemy(
+const Skeleton = new Character(
   'Skeleton', spritesSkeleton, iconEnemy3
 )
 const Blaster = new Enemy(
   'Blaster', spritesBlaster, iconEnemy2
 )
-
-console.log(Leo.getBio());
 
 while (isPaused == false && timeout == false) {
   timeout = true;
