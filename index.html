@@ -13,23 +13,36 @@
   <body>
     <header>
       <button class="pause">II</button>
+      <button class="reset">R</button>
       <div class="title">
         <i class="t"></i><h1>yping </h1><i class="d"></i><h1>ungeon</h1>
       </div>
     </header>
     <main>
       <div class="container">
+        <div class="timer-container">
+          <p id="timer">Time Left: 15 S</p>
+          <p id="score">Score: 0</p>
+        </div>
         <div class="map"><div class="grid">
           <i class="Leo sprite leo"></i>
           <i class="Enemy1 sprite goblin"></i>
           <i class="Enemy2 sprite blaster"></i>
           <i class="Enemy3 sprite skeleton"></i>
         </div></div>
-        <div class="menu"><div class="grid">
+        <div class="menu visible"><div class="grid">
           <div class="title">
             <i class="t"></i><h1>yping </h1><i class="d"></i><h1>ungeon</h1>
           </div>
           <h2>Paused</h2>
+        </div></div>
+        <div class="text-banner"><div class="grid">
+          <div class="word-display-banner">
+            <h1>Current word:</h1>
+            <p id="word-display"></p>
+            <p id="status"></p>
+            <input type="text" id="textinput">
+          </div>
         </div></div>
       </div>
     </main>

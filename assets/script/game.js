@@ -1,27 +1,129 @@
 'use strict';
 
+document.addEventListener("DOMContentLoaded", () => {
+
 let isPaused = false;
 let timeout = false;
 let enemies = 0;
 
+const words =
+['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'];
+
 const pause = document.querySelector(".pause");
 const menu = document.querySelector(".menu");
+const textbanner = document.querySelector(".text-banner");
+const worddisplay = document.getElementById("word-display");
+const input = document.getElementById("textinput");
+const scorepoint = document.getElementById("score");
+const status = document.getElementById("status");
+const reset = document.querySelector(".reset");
+const timer = document.getElementById("timer");
+
+let timeleft = 15;
+let timestarted = false;
+let timerid = null;
+let score = 0;
+let currentword = "";
+
+function updateTimer() {
+  if(timeleft > 0) {
+    timer.innerText = `Time Left: ${timeleft} s`;
+  } else {
+    timer.innerText = "Times up!";
+  }
+}
+
+function timetick() {
+  if(isPaused) return;
+
+  if(timeleft > 0) {
+    timeleft--;
+    updateTimer();
+    timerid = setTimeout(timetick, 1000);
+  } else {
+    timerid = null;
+    updateTimer();
+    alert(`Your Score is: ${score}`);
+    resetgame();
+  }
+}
 
 pause.addEventListener("click", function() {
   menu.classList.toggle("visible");
+  textbanner.classList.toggle("visible");
   if (isPaused == false) {
     isPaused = true;
     pause.innerText = "D";
+    clearTimeout(timerid);
+    timeleft = 15;
+    updateTimer();
+    timestarted = false;
+    signWord();
+    input.focus();
   } else {
     isPaused = false;
     pause.innerText = "II";
+    input.value = "";
   }
 });
 
+input.addEventListener("input", () => {
+  isPaused = false;
+  if (isPaused) return;
+  if (!timestarted) {
+    timestarted = true;
+    clearTimeout(timerid);
+    timerid = setTimeout(timetick, 1000);
+  }
+});
+
+function signWord() {
+  currentword = words[Math.floor(Math.random() * words.length)];
+  worddisplay.innerText = currentword;
+}
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if(input.value === currentword){
+    score++;
+    scorepoint.innerText = `Score: ${score}`;
+
+    input.value = "";
+    status.innerText = "";
+    signWord();
+  } else {
+    status.innerText = "Please enter right word!";
+  }
 
 
+  }
+});
 
+function resetgame() {
+  clearTimeout(timerid);
+  isPaused = true;
+  timeleft = 15;
+  timestarted = false;
+  timerid = null;
+  score = 0;
+  currentword = "";
+  timer.innerText = "Time Left: 15 s";
+  scorepoint.innerText = "Score: 0";
+  input.value = "";
+  status.innerText = "";
+  signWord();
+  input.focus();
+}
 
+reset.addEventListener("click", resetgame);
+
+reset.addEventListener("keydown", (e)=> {
+  if (e.key === "pagedown") {
+    resetgame();
+  }
+})
+
+});
 
 /* Animation and physic code for extra stuff later on...
 //index 0 is Idle, index 1 is walk, index 2 is attack, index 3 victory (3 is not mandatory for everyone);

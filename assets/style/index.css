@@ -56,7 +56,7 @@ main {
   background-color: #ffffff;
 }
 
-.pause {
+.pause, .reset {
   background-color: #b9895b;
   border-radius: 10px;
   font-size: 26px;
@@ -65,6 +65,7 @@ main {
   left: 5px;
   top: 5px;
   height: 55px;
+  margin-right: 20px;
 }
 
 .grid {
@@ -72,7 +73,7 @@ main {
   place-items: center;
 }
 
-.menu {
+.menu, .text-banner {
   position: fixed;
   width: 75%;
   bottom: 45%;
@@ -82,7 +83,7 @@ main {
   border: 3px, solid #423522;
   border-radius: 20px;
   place-content: center;
-  visibility: hidden;
+  display: none;
 }
 
 .menu h2 {
@@ -120,9 +121,25 @@ div {
 }
 
 .visible {
-  visibility: visible;
+  display: block;
 }
 
+/* timer */
+.timer-container {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  z-index: 20;
+}
+#timer, #score{
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+/*  */
 .sprite {
   width: 96px;
   height: 96px;
