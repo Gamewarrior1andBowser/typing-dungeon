@@ -16,6 +16,10 @@ const scorepoint = document.getElementById("score");
 const status = document.getElementById("status");
 const reset = document.querySelector(".reset");
 const timer = document.getElementById("timer");
+const leo = document.querySelector(".Leo");
+const candle1 = document.querySelector(".Candle1");
+const candle2 = document.querySelector(".Candle2");
+const enemy = document.querySelector(".Enemy")
 const start = new Audio('./assets/media/keyboard-typing.mp3');
 start.type = 'audio/mp3';
 const clear = new Audio('./assets/media/score.mp3');
@@ -29,7 +33,7 @@ hurt.type = 'audio/mp3';
 const win = new Audio('./assets/media/winning.mp3');
 win.type = 'audio/mp3';
 
-let timeleft = 5;
+let timeleft = 99;
 let timestarted = false;
 let timerid = null;
 let score = 0;
@@ -44,18 +48,21 @@ function updateTimer() {
 }
 
 function timetick() {
+  animateCandles();
   if(isPaused) return;
 
   if(timeleft > 1) {
     timeleft--;
     updateTimer();
     timerid = setTimeout(timetick, 1000);
-  } else {
+  } else if (timeleft == 1){
     timeleft--;
     updateTimer();
     background.pause();
     win.play();
     timerid = null;
+    leo.classList.add('leo_win');
+    enemy.classList.add('skeletonWizard_dead');
   }
 }
 
@@ -101,36 +108,62 @@ function signWord() {
   worddisplay.innerText = currentword;
 }
 
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    if (timeleft > 0) {
-      if(input.value === currentword){
-        clear.play();
-        score++;
-        scorepoint.innerText = `Score: ${score}`;
-        input.value = "";
-        status.innerText = "";
-        signWord();
-      } else {
-        hurt.play();
-        status.innerText = "Please enter the right word!";
-      }
+input.addEventListener("input", () => {
+  let value = String(input.value);
+  if (timeleft > 0) {
+    if(value == currentword){
+      clear.play();
+      score++;
+      scorepoint.innerText = `Score: ${score}`;
+      input.value = "";
+      status.innerText = "";
+      signWord();
+      leo.classList.add('leo_attack');
+      enemy.classList.add('skeletonWizard_hurt');
+      setTimeout(() => {
+        leo.classList.remove('leo_attack');
+        enemy.classList.remove('skeletonWizard_hurt');
+      }, 1000);
+    } else if (currentword.includes(value)) {
     } else {
-      status.innerText = "Time's already up!";
+      hurt.play();
+      status.innerText = "Please enter the right word!";
+      leo.classList.add('leo_hurt');
+      enemy.classList.add('skeletonWizard_attack');
+      setTimeout(() => {
+        leo.classList.remove('leo_hurt');
+        enemy.classList.remove('skeletonWizard_attack');
+      }, 1000);
     }
-
+  } else {
+    status.innerText = "Time's already up!";
   }
 });
 
+function animateCandles() {
+  let reps = 0;
+  while(reps < 100000) {
+    candle1.classList.add('candle_alt');
+    candle2.classList.add('candle_alt');
+    setTimeout(() => {
+      candle1.classList.remove('candle_alt');
+      candle2.classList.remove('candle_alt');
+    }, 1000);
+    reps += 1;
+  }
+}
+
 function resetgame() {
   clearTimeout(timerid);
+  leo.classList.remove('leo_win');
+  enemy.classList.remove('skeletonWizard_dead');
   isPaused = true;
-  timeleft = 30;
+  timeleft = 99;
   timestarted = false;
   timerid = null;
   score = 0;
   currentword = "";
-  timer.innerText = "Time Left: 30 s";
+  timer.innerText = "Time Left: 99 s";
   scorepoint.innerText = "Score: 0";
   input.value = "";
   status.innerText = "";
@@ -150,10 +183,8 @@ reset.addEventListener("keydown", (e)=> {
   }
 })
 
-
-
-
 });
+
 
 /* Animation and physic code for extra stuff later on...
 //index 0 is Idle, index 1 is walk, index 2 is attack, index 3 victory (3 is not mandatory for everyone);
