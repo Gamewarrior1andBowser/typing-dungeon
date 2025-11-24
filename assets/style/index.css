@@ -53,7 +53,6 @@ main {
 
 .map {
   width: 100%;
-  background-color: #ffffff;
 }
 
 .pause, .reset {
@@ -78,17 +77,28 @@ main {
 
 .menu, .text-banner {
   position: fixed;
-  width: 75%;
+  width: 95%;
   bottom: 45%;
   background-color: #b9895b;
   padding: 10px;
   border: 3px, solid #423522;
   border-radius: 20px;
-  place-content: center;
+  justify-content: center;
 }
 
 .text-banner {
   z-index: 4;
+  height: 250px;
+}
+
+.word-display-banner {
+  grid-template-columns: repeat(1, 0fr);
+  display: grid;
+}
+
+.word-display-banner, .word-display-banner * {
+  width: min(500px);
+  text-align: center;
 }
 
 .menu {
@@ -113,12 +123,26 @@ main {
 }
 
 p, input {
-  font-weight: 600; 
+  font-weight: 500; 
 }
 
 p {
+  font-size: 36px;
+  padding: 0px 5px;
+}
+
+input {
+  height: 60px;
+  background-color: #000000;
+  color: #fff;
   font-size: 30px;
-  padding: 20px 5px;
+  border-radius: 5px;
+  box-shadow: 1px 2px #444;
+}
+
+#status {
+  color: #ff0000;
+  text-shadow: 1px 1px 1px 1px #000000;
 }
 
 .map, .container {
@@ -127,7 +151,7 @@ p {
   justify-content: center;
 }
 
-.map, .pause, .reset {
+.pause, .reset {
   border: 2px, solid #000000;
 }
 

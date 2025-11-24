@@ -88,7 +88,7 @@ input.addEventListener("keydown", (e) => {
         status.innerText = "";
         signWord();
       } else {
-        status.innerText = "Please enter right word!";
+        status.innerText = "Please enter the right word!";
       }
     } else {
       status.innerText = "Time's already up!";
@@ -105,7 +105,7 @@ function resetgame() {
   timerid = null;
   score = 0;
   currentword = "";
-  timer.innerText = "Time Left: 15 s";
+  timer.innerText = "Time Left: 30 s";
   scorepoint.innerText = "Score: 0";
   input.value = "";
   status.innerText = "";
