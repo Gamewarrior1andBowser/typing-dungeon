@@ -3,8 +3,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 let isPaused = false;
-let timeout = false;
-let enemies = 0;
 
 const words =
 ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'];
@@ -18,8 +16,20 @@ const scorepoint = document.getElementById("score");
 const status = document.getElementById("status");
 const reset = document.querySelector(".reset");
 const timer = document.getElementById("timer");
+const start = new Audio('./assets/media/keyboard-typing.mp3');
+start.type = 'audio/mp3';
+const clear = new Audio('./assets/media/score.mp3');
+clear.type = 'audio/mp3';
+const background = new Audio('./assets/media/background.mp3');
+background.type = 'audio/mp3';
+const menusound = new Audio('./assets/media/menu.mp3');
+menusound.type = 'audio/mp3';
+const hurt = new Audio('./assets/media/hurt.mp3');
+hurt.type = 'audio/mp3';
+const win = new Audio('./assets/media/winning.mp3');
+win.type = 'audio/mp3';
 
-let timeleft = 30;
+let timeleft = 5;
 let timestarted = false;
 let timerid = null;
 let score = 0;
@@ -36,13 +46,16 @@ function updateTimer() {
 function timetick() {
   if(isPaused) return;
 
-  if(timeleft > 0) {
+  if(timeleft > 1) {
     timeleft--;
     updateTimer();
     timerid = setTimeout(timetick, 1000);
   } else {
-    timerid = null;
+    timeleft--;
     updateTimer();
+    background.pause();
+    win.play();
+    timerid = null;
   }
 }
 
@@ -55,21 +68,31 @@ pause.addEventListener("click", function() {
     clearTimeout(timerid);
     updateTimer();
     timestarted = false;
-    input.focus();
+    menusound.play();
+    background.pause();
   } else {
     isPaused = false;
     pause.innerText = "II";
     input.value = "";
+    input.focus();
   }
 });
 
 input.addEventListener("input", () => {
+  start.play();
   isPaused = false;
   if (isPaused) return;
   if (!timestarted) {
     timestarted = true;
     clearTimeout(timerid);
     timerid = setTimeout(timetick, 1000);
+  }
+  if(timeleft > 0) {
+    menusound.pause();
+    background.play();
+  } else {
+    background.pause();
+    menusound.pause();
   }
 });
 
@@ -82,12 +105,14 @@ input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     if (timeleft > 0) {
       if(input.value === currentword){
+        clear.play();
         score++;
         scorepoint.innerText = `Score: ${score}`;
         input.value = "";
         status.innerText = "";
         signWord();
       } else {
+        hurt.play();
         status.innerText = "Please enter the right word!";
       }
     } else {
@@ -114,6 +139,8 @@ function resetgame() {
 }
 
 signWord();
+input.focus();
+menusound.play();
 
 reset.addEventListener("click", resetgame);
 
@@ -122,6 +149,9 @@ reset.addEventListener("keydown", (e)=> {
     resetgame();
   }
 })
+
+
+
 
 });
 
