@@ -12,22 +12,8 @@ const words =
 const pause = document.querySelector(".pause");
 const menu = document.querySelector(".menu");
 const textbanner = document.querySelector(".text-banner");
-const timer = document.getElementById("timer");
 const worddisplay = document.getElementById("word-display");
 const input = document.getElementById("textinput");
-
-pause.addEventListener("click", function() {
-  menu.classList.toggle("visible");
-  textbanner.classList.toggle("visible");
-  if (isPaused == false) {
-    isPaused = true;
-    pause.innerText = "D";
-  } else {
-    isPaused = false;
-    pause.innerText = "II";
-  }
-});
-
 
 let timeleft = 15;
 let timestarted = false;
@@ -35,22 +21,53 @@ let timerid = null;
 
 function updateTimer() {
   const timer = document.getElementById("timer");
-  timer.innerText = `Time Left: ${timeleft} s`;
-}
-
-function startTimer() {
-  timeleft--;
-  updateTimer();
-
   if(timeleft > 0) {
-    timerid = setTimeout(startTimer, 1000);
+    timer.innerText = `Time Left: ${timeleft} s`;
   } else {
-    timerid = null;
     timer.innerText = "Times up!";
   }
 }
 
-input.addEventListener("keydown", startTimer);
+function timetick() {
+  if(isPaused) return;
+
+  if(timeleft > 0) {
+    timeleft--;
+    updateTimer();
+    timerid = setTimeout(timetick, 1000);
+  } else {
+    timerid = null;
+    updateTimer();
+  }
+}
+
+pause.addEventListener("click", function() {
+  menu.classList.toggle("visible");
+  textbanner.classList.toggle("visible");
+  if (isPaused == false) {
+    isPaused = true;
+    pause.innerText = "D";
+    clearTimeout(timerid);
+    timeleft = 15;
+    updateTimer();
+    timestarted = false;
+  } else {
+    isPaused = false;
+    pause.innerText = "II";
+    input.value = "";
+  }
+});
+
+input.addEventListener("input", () => {
+  isPaused = false;
+  if (isPaused) return;
+  if (!timestarted) {
+    timestarted = true;
+    clearTimeout(timerid);
+    timerid = setTimeout(timetick, 1000);
+  }
+});
+
 
 });
 
