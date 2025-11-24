@@ -47,7 +47,7 @@ main {
   z-index: -2;
 }
 
-.map, .pause, .container, header .title, .t, .d, .sprite {
+.map, .pause, .reset, .container, header .title, .t, .d, .sprite {
   position: relative;
 }
 
@@ -62,10 +62,13 @@ main {
   font-size: 26px;
   font-weight: 800;
   padding: 5px 15px;
-  left: 5px;
   top: 5px;
   height: 55px;
   margin-right: 20px;
+}
+
+.pause {
+  left: 5px;
 }
 
 .grid {
@@ -79,11 +82,18 @@ main {
   bottom: 45%;
   background-color: #b9895b;
   padding: 10px;
-  z-index: 5;
   border: 3px, solid #423522;
   border-radius: 20px;
   place-content: center;
-  display: none;
+}
+
+.text-banner {
+  z-index: 4;
+}
+
+.menu {
+  visibility: hidden;
+  z-index: 5;
 }
 
 .menu h2 {
@@ -102,13 +112,22 @@ main {
   display: flex;
 }
 
+p, input {
+  font-weight: 600; 
+}
+
+p {
+  font-size: 30px;
+  padding: 20px 5px;
+}
+
 .map, .container {
   justify-self: center;
   justify-items: center;
   justify-content: center;
 }
 
-.map, .pause {
+.map, .pause, .reset {
   border: 2px, solid #000000;
 }
 
@@ -121,7 +140,7 @@ div {
 }
 
 .visible {
-  display: block;
+  visibility: visible;
 }
 
 /* timer */

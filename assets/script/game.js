@@ -19,7 +19,7 @@ const status = document.getElementById("status");
 const reset = document.querySelector(".reset");
 const timer = document.getElementById("timer");
 
-let timeleft = 15;
+let timeleft = 30;
 let timestarted = false;
 let timerid = null;
 let score = 0;
@@ -43,8 +43,6 @@ function timetick() {
   } else {
     timerid = null;
     updateTimer();
-    alert(`Your Score is: ${score}`);
-    resetgame();
   }
 }
 
@@ -55,10 +53,8 @@ pause.addEventListener("click", function() {
     isPaused = true;
     pause.innerText = "D";
     clearTimeout(timerid);
-    timeleft = 15;
     updateTimer();
     timestarted = false;
-    signWord();
     input.focus();
   } else {
     isPaused = false;
@@ -84,17 +80,19 @@ function signWord() {
 
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    if(input.value === currentword){
-    score++;
-    scorepoint.innerText = `Score: ${score}`;
-
-    input.value = "";
-    status.innerText = "";
-    signWord();
-  } else {
-    status.innerText = "Please enter right word!";
-  }
-
+    if (timeleft > 0) {
+      if(input.value === currentword){
+        score++;
+        scorepoint.innerText = `Score: ${score}`;
+        input.value = "";
+        status.innerText = "";
+        signWord();
+      } else {
+        status.innerText = "Please enter right word!";
+      }
+    } else {
+      status.innerText = "Time's already up!";
+    }
 
   }
 });
@@ -102,7 +100,7 @@ input.addEventListener("keydown", (e) => {
 function resetgame() {
   clearTimeout(timerid);
   isPaused = true;
-  timeleft = 15;
+  timeleft = 30;
   timestarted = false;
   timerid = null;
   score = 0;
@@ -114,6 +112,8 @@ function resetgame() {
   signWord();
   input.focus();
 }
+
+signWord();
 
 reset.addEventListener("click", resetgame);
 
