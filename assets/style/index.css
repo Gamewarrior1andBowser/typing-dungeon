@@ -24,7 +24,9 @@
 }
 
 .map {
-  height: 800px;
+  height: 100px;
+  bottom: 10%;
+  position: fixed;
 }
 
 header {
@@ -47,12 +49,13 @@ main {
   z-index: -2;
 }
 
-.map, .pause, .reset, .container, header .title, .t, .d, .sprite {
+.pause, .candle, .reset, .container, header .title, .t, .d, .sprite {
   position: relative;
 }
 
 .map {
   width: 100%;
+  bottom: 5%;
 }
 
 .pause, .reset {
@@ -89,7 +92,8 @@ main {
 .text-banner {
   z-index: 4;
   height: 250px;
-  background-color: #808080;
+  background-image: url(../media/bg.png);
+  background-size: 110px 110px;
 }
 
 .word-display-banner {
@@ -126,6 +130,11 @@ main {
 
 p, input {
   font-weight: 500; 
+}
+
+p, input, .word-display-banner div h1 {
+  color:#fff;
+  text-shadow: 1px 2px #963737;
 }
 
 p {
@@ -184,6 +193,7 @@ div {
   padding: 8px 14px;
   border-radius: 10px;
 }
+
 /*  */
 .sprite {
   width: 96px;
@@ -197,54 +207,47 @@ div {
   background-image: url(../media/leo_idle0.png);
 }
 
-.blaster {
-  background-image: url(../media/blaster_idle0.png);
+.skeletonWizard{
+  background-image: url(../media/skeletonWizard.png);
 }
 
-.goblin {  
-  background-image: url(../media/goblin_idle0.png);
+.skeletonWizard_hurt {  
+  background-image: url(../media/skeletonWizard_hurt.png);
 }
 
-.skeleton {
-  background-image: url(../media/skeleton_idle0.png);
+.skeletonWizard_attack {  
+  background-image: url(../media/skeletonWizard_attack.png);
 }
 
-@keyframes leo_idle {
-  0%, 100% {background-image: url(../media/leo_idle0.png)};
-  50% {background-image: url(../media/leo_idle1.png)};
+.skeletonWizard_dead {  
+  background-image: url(../media/skeletonWizard_fail.png);
 }
 
-@keyframes blaster_idle {
-  0%, 100% {background-image: url(../media/blaster_idle0.png)};
-  50% {background-image: url(../media/blaster_idle1.png)};
+.leo_attack {
+  background-image: url(../media/leo_act.png);
 }
 
-@keyframes goblin_idle {
-  0%, 100% {background-image: url(../media/goblin_idle0.png)};
-  50% {background-image: url(../media/goblin_idle1.png)};
+.leo_hurt {
+  background-image: url(../media/leo_hurt.png);
 }
 
-@keyframes skeleton_idle {
-  0%, 100% {background-image: url(../media/skeleton_idle0.png)};
-  50% {background-image: url(../media/skeleton_idle1.png)};
+.leo_win {
+  background-image: url(../media/leo_win1.png);
 }
 
-@keyframes leo_walk {
-  0%, 100% {background-image: url(../media/leo_walk0.png)};
-  50% {background-image: url(../media/leo_walk1.png)};
+.candle {
+  background-image: url(../media/candle0.png);
 }
 
-@keyframes blaster_walk {
-  0%, 100% {background-image: url(../media/blaster_walk0.png)};
-  50% {background-image: url(../media/blaster_walk1.png)};
+.candle_alt {
+  background-image: url(../media/candle1.png);
 }
 
-@keyframes goblin_walk {
-  0%, 100% {background-image: url(../media/goblin_walk0.png)};
-  50% {background-image: url(../media/goblin_walk1.png)};
-}
-
-@keyframes skeleton_walk {
-  0%, 100% {background-image: url(../media/skeleton_walk0.png)};
-  50% {background-image: url(../media/skeleton_walk1.png)};
+.candle {
+  justify-self: end;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: 64px 64px;
+  margin: 20px;
 }
