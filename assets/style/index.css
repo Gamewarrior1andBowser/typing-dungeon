@@ -89,6 +89,7 @@ main {
 .text-banner {
   z-index: 4;
   height: 250px;
+  background-color: #808080;
 }
 
 .word-display-banner {
@@ -104,6 +105,7 @@ main {
 .menu {
   visibility: hidden;
   z-index: 5;
+  height: 250px;
 }
 
 .menu h2 {
