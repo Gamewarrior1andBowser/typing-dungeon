@@ -72,7 +72,7 @@ main {
   place-items: center;
 }
 
-.menu {
+.menu, .text-banner {
   position: fixed;
   width: 75%;
   bottom: 45%;
@@ -82,7 +82,7 @@ main {
   border: 3px, solid #423522;
   border-radius: 20px;
   place-content: center;
-  visibility: hidden;
+  display: none;
 }
 
 .menu h2 {
@@ -120,9 +120,25 @@ div {
 }
 
 .visible {
-  visibility: visible;
+  display: block;
 }
 
+/* timer */
+.timer-container {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  z-index: 20;
+}
+#timer {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+/*  */
 .sprite {
   width: 96px;
   height: 96px;
