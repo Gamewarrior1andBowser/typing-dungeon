@@ -14,13 +14,18 @@ const menu = document.querySelector(".menu");
 const textbanner = document.querySelector(".text-banner");
 const worddisplay = document.getElementById("word-display");
 const input = document.getElementById("textinput");
+const scorepoint = document.getElementById("score");
+const status = document.getElementById("status");
+const reset = document.querySelector(".reset");
+const timer = document.getElementById("timer");
 
 let timeleft = 15;
 let timestarted = false;
 let timerid = null;
+let score = 0;
+let currentword = "";
 
 function updateTimer() {
-  const timer = document.getElementById("timer");
   if(timeleft > 0) {
     timer.innerText = `Time Left: ${timeleft} s`;
   } else {
@@ -38,6 +43,8 @@ function timetick() {
   } else {
     timerid = null;
     updateTimer();
+    alert(`Your Score is: ${score}`);
+    resetgame();
   }
 }
 
@@ -51,6 +58,8 @@ pause.addEventListener("click", function() {
     timeleft = 15;
     updateTimer();
     timestarted = false;
+    signWord();
+    input.focus();
   } else {
     isPaused = false;
     pause.innerText = "II";
@@ -68,6 +77,51 @@ input.addEventListener("input", () => {
   }
 });
 
+function signWord() {
+  currentword = words[Math.floor(Math.random() * words.length)];
+  worddisplay.innerText = currentword;
+}
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if(input.value === currentword){
+    score++;
+    scorepoint.innerText = `Score: ${score}`;
+
+    input.value = "";
+    status.innerText = "";
+    signWord();
+  } else {
+    status.innerText = "Please enter right word!";
+  }
+
+
+  }
+});
+
+function resetgame() {
+  clearTimeout(timerid);
+  isPaused = true;
+  timeleft = 15;
+  timestarted = false;
+  timerid = null;
+  score = 0;
+  currentword = "";
+  timer.innerText = "Time Left: 15 s";
+  scorepoint.innerText = "Score: 0";
+  input.value = "";
+  status.innerText = "";
+  signWord();
+  input.focus();
+}
+
+reset.addEventListener("click", resetgame);
+
+reset.addEventListener("keydown", (e)=> {
+  if (e.key === "pagedown") {
+    resetgame();
+  }
+})
 
 });
 

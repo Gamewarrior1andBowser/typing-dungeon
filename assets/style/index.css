@@ -56,7 +56,7 @@ main {
   background-color: #ffffff;
 }
 
-.pause {
+.pause, .reset {
   background-color: #b9895b;
   border-radius: 10px;
   font-size: 26px;
@@ -65,6 +65,7 @@ main {
   left: 5px;
   top: 5px;
   height: 55px;
+  margin-right: 20px;
 }
 
 .grid {
@@ -130,7 +131,7 @@ div {
   right: 3%;
   z-index: 20;
 }
-#timer {
+#timer, #score{
   font-size: 30px;
   font-weight: 700;
   color: #fff;
