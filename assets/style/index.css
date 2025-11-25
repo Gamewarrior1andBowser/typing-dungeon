@@ -7,6 +7,14 @@
   top: 5px;
 }
 
+* {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.fa-pause {
+  margin-top: 5px;
+}
+
 .t {
   background-image: url(../media/t.png);
 }
