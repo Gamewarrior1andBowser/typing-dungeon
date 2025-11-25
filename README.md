@@ -15,12 +15,14 @@ The Typing Dungeon is a fun, browser-based typing game where players defeat enem
 - Simple, responsive dungeon-themed UI
 - Pause and reset function
 - Character animations and sound effects
+- Fitting background music
 ---
 
 ### Files & Structures:
 - **index.html**: Game layout, UI elements, and sprite containers
 - **index.css**: Visual styling, dungeon theme, animations, and layout
 - **game.js**: Game logic for scoring, timer, audio, word checks, and animations 
-- **assets folder**: Contains images, audio, and sprites
+- **assets folder**: Contains images, audio
 ---
 
+[Play now]() and see how fast you can conquer the dungeon!
