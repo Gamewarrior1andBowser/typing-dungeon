@@ -296,3 +296,19 @@ div {
     transform: translateY(0);
   }
 }
+
+.banner-animation { 
+  animation: bg-shake 1s ease;
+}
+
+@keyframes bg-shake {
+  0%, 20%, 40%, 60%, 80% {
+    rotate: z 5deg;
+  
+  } 10%, 30%, 50%, 70% {    
+    rotate: z -5deg;
+  }
+  100% {
+    rotate: 0;
+  }
+}

@@ -135,9 +135,11 @@ input.addEventListener("input", () => {
       status.innerText = "Please enter the right word!";
       leo.classList.add('leo_hurt');
       enemy.classList.add('skeletonWizard_attack');
+      textbanner.classList.add('banner-animation');
       setTimeout(() => {
         leo.classList.remove('leo_hurt');
         enemy.classList.remove('skeletonWizard_attack');
+        textbanner.classList.remove('banner-animation');
       }, 1000);
     }
   } else {
