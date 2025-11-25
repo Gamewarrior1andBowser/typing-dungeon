@@ -194,6 +194,23 @@ div {
   border-radius: 10px;
 }
 
+#score {
+  z-index: 5;
+}
+
+#plusone {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  width: 120px;
+  height: 60px;
+  background-image: url(../media/scoreplusone.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 4;
+  opacity: 0;
+}
+
 /*  */
 .sprite {
   width: 96px;
@@ -250,4 +267,24 @@ div {
   background-repeat: no-repeat;
   background-size: 64px 64px;
   margin: 20px;
+}
+
+.plusone-animation { 
+  animation: plusone 0.8s ease-out forwards;
+}
+
+@keyframes plusone {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+    transform: translateY(-70px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
 }

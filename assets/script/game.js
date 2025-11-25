@@ -20,6 +20,7 @@ const leo = document.querySelector(".Leo");
 const candle1 = document.querySelector(".Candle1");
 const candle2 = document.querySelector(".Candle2");
 const enemy = document.querySelector(".Enemy")
+const plusoneani = document.getElementById("plusone");
 const start = new Audio('./assets/media/keyboard-typing.mp3');
 start.type = 'audio/mp3';
 const clear = new Audio('./assets/media/score.mp3');
@@ -114,6 +115,10 @@ input.addEventListener("input", () => {
     if(value == currentword){
       clear.play();
       score++;
+      plusoneani.classList.add('plusone-animation');
+      setTimeout(() => {
+        plusone.classList.remove('plusone-animation');
+      }, 1000);
       scorepoint.innerText = `Score: ${score}`;
       input.value = "";
       status.innerText = "";
