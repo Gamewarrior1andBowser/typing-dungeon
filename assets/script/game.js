@@ -1,26 +1,196 @@
 'use strict';
 
+document.addEventListener("DOMContentLoaded", () => {
+
 let isPaused = false;
-let timeout = false;
-let enemies = 0;
+
+const words =
+['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window'];
 
 const pause = document.querySelector(".pause");
 const menu = document.querySelector(".menu");
+const textbanner = document.querySelector(".text-banner");
+const worddisplay = document.getElementById("word-display");
+const input = document.getElementById("textinput");
+const scorepoint = document.getElementById("score");
+const status = document.getElementById("status");
+const reset = document.querySelector(".reset");
+const timer = document.getElementById("timer");
+const leo = document.querySelector(".Leo");
+const candle1 = document.querySelector(".Candle1");
+const candle2 = document.querySelector(".Candle2");
+const enemy = document.querySelector(".Enemy")
+const plusoneani = document.getElementById("plusone");
+const start = new Audio('./assets/media/keyboard-typing.mp3');
+start.type = 'audio/mp3';
+const clear = new Audio('./assets/media/score.mp3');
+clear.type = 'audio/mp3';
+const background = new Audio('./assets/media/background.mp3');
+background.type = 'audio/mp3';
+const menusound = new Audio('./assets/media/menu.mp3');
+menusound.type = 'audio/mp3';
+const hurt = new Audio('./assets/media/hurt.mp3');
+hurt.type = 'audio/mp3';
+const win = new Audio('./assets/media/winning.mp3');
+win.type = 'audio/mp3';
+
+let timeleft = 99;
+let timestarted = false;
+let timerid = null;
+let score = 0;
+let currentword = "";
+
+function updateTimer() {
+  if(timeleft > 0) {
+    timer.innerText = `Time Left: ${timeleft} s`;
+  } else {
+    timer.innerText = "Times up!";
+  }
+}
+
+function timetick() {
+  animateCandles();
+  if(isPaused) return;
+
+  if(timeleft > 1) {
+    timeleft--;
+    updateTimer();
+    timerid = setTimeout(timetick, 1000);
+  } else if (timeleft == 1){
+    timeleft--;
+    updateTimer();
+    background.pause();
+    win.play();
+    timerid = null;
+    leo.classList.add('leo_win');
+    enemy.classList.add('skeletonWizard_dead');
+  }
+}
 
 pause.addEventListener("click", function() {
   menu.classList.toggle("visible");
+  textbanner.classList.toggle("visible");
   if (isPaused == false) {
     isPaused = true;
     pause.innerText = "D";
+    clearTimeout(timerid);
+    updateTimer();
+    timestarted = false;
+    menusound.play();
+    background.pause();
   } else {
     isPaused = false;
     pause.innerText = "II";
+    input.value = "";
+    input.focus();
   }
 });
 
+input.addEventListener("input", () => {
+  start.play();
+  isPaused = false;
+  if (isPaused) return;
+  if (!timestarted) {
+    timestarted = true;
+    clearTimeout(timerid);
+    timerid = setTimeout(timetick, 1000);
+  }
+  if(timeleft > 0) {
+    menusound.pause();
+    background.play();
+  } else {
+    background.pause();
+    menusound.pause();
+  }
+});
 
+function signWord() {
+  currentword = words[Math.floor(Math.random() * words.length)];
+  worddisplay.innerText = currentword;
+}
 
+input.addEventListener("input", () => {
+  let value = String(input.value);
+  if (timeleft > 0) {
+    if(value == currentword){
+      clear.play();
+      score++;
+      plusoneani.classList.add('plusone-animation');
+      setTimeout(() => {
+        plusone.classList.remove('plusone-animation');
+      }, 1000);
+      scorepoint.innerText = `Score: ${score}`;
+      input.value = "";
+      status.innerText = "";
+      signWord();
+      leo.classList.add('leo_attack');
+      enemy.classList.add('skeletonWizard_hurt');
+      setTimeout(() => {
+        leo.classList.remove('leo_attack');
+        enemy.classList.remove('skeletonWizard_hurt');
+      }, 1000);
+    } else if (currentword.includes(value)) {
+    } else {
+      hurt.play();
+      status.innerText = "Please enter the right word!";
+      leo.classList.add('leo_hurt');
+      enemy.classList.add('skeletonWizard_attack');
+      textbanner.classList.add('banner-animation');
+      setTimeout(() => {
+        leo.classList.remove('leo_hurt');
+        enemy.classList.remove('skeletonWizard_attack');
+        textbanner.classList.remove('banner-animation');
+      }, 1000);
+    }
+  } else {
+    status.innerText = "Time's already up!";
+  }
+});
 
+function animateCandles() {
+  let reps = 0;
+  while(reps < 100000) {
+    candle1.classList.add('candle_alt');
+    candle2.classList.add('candle_alt');
+    setTimeout(() => {
+      candle1.classList.remove('candle_alt');
+      candle2.classList.remove('candle_alt');
+    }, 1000);
+    reps += 1;
+  }
+}
+
+function resetgame() {
+  clearTimeout(timerid);
+  leo.classList.remove('leo_win');
+  enemy.classList.remove('skeletonWizard_dead');
+  isPaused = true;
+  timeleft = 99;
+  timestarted = false;
+  timerid = null;
+  score = 0;
+  currentword = "";
+  timer.innerText = "Time Left: 99 s";
+  scorepoint.innerText = "Score: 0";
+  input.value = "";
+  status.innerText = "";
+  signWord();
+  input.focus();
+}
+
+signWord();
+input.focus();
+menusound.play();
+
+reset.addEventListener("click", resetgame);
+
+reset.addEventListener("keydown", (e)=> {
+  if (e.key === "pagedown") {
+    resetgame();
+  }
+})
+
+});
 
 
 /* Animation and physic code for extra stuff later on...

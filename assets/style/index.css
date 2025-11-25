@@ -7,6 +7,14 @@
   top: 5px;
 }
 
+* {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.fa-pause {
+  margin-top: 5px;
+}
+
 .t {
   background-image: url(../media/t.png);
 }
@@ -24,7 +32,9 @@
 }
 
 .map {
-  height: 800px;
+  height: 100px;
+  bottom: 10%;
+  position: fixed;
 }
 
 header {
@@ -47,24 +57,28 @@ main {
   z-index: -2;
 }
 
-.map, .pause, .container, header .title, .t, .d, .sprite {
+.pause, .candle, .reset, .container, header .title, .t, .d, .sprite {
   position: relative;
 }
 
 .map {
   width: 100%;
-  background-color: #ffffff;
+  bottom: 5%;
 }
 
-.pause {
+.pause, .reset {
   background-color: #b9895b;
   border-radius: 10px;
   font-size: 26px;
   font-weight: 800;
   padding: 5px 15px;
-  left: 5px;
   top: 5px;
   height: 55px;
+  margin-right: 20px;
+}
+
+.pause {
+  left: 5px;
 }
 
 .grid {
@@ -72,17 +86,38 @@ main {
   place-items: center;
 }
 
-.menu {
+.menu, .text-banner {
   position: fixed;
-  width: 75%;
+  width: 95%;
   bottom: 45%;
   background-color: #b9895b;
   padding: 10px;
-  z-index: 5;
   border: 3px, solid #423522;
   border-radius: 20px;
-  place-content: center;
+  justify-content: center;
+}
+
+.text-banner {
+  z-index: 4;
+  height: 250px;
+  background-image: url(../media/bg.png);
+  background-size: 110px 110px;
+}
+
+.word-display-banner {
+  grid-template-columns: repeat(1, 0fr);
+  display: grid;
+}
+
+.word-display-banner, .word-display-banner * {
+  width: min(500px);
+  text-align: center;
+}
+
+.menu {
   visibility: hidden;
+  z-index: 5;
+  height: 250px;
 }
 
 .menu h2 {
@@ -101,13 +136,41 @@ main {
   display: flex;
 }
 
+p, input {
+  font-weight: 500; 
+}
+
+p, input, .word-display-banner div h1 {
+  color:#fff;
+  text-shadow: 1px 2px #963737;
+}
+
+p {
+  font-size: 36px;
+  padding: 0px 5px;
+}
+
+input {
+  height: 60px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 2px #444;
+}
+
+#status {
+  color: #ff0000;
+  text-shadow: 1px 1px 1px 1px #000000;
+}
+
 .map, .container {
   justify-self: center;
   justify-items: center;
   justify-content: center;
 }
 
-.map, .pause {
+.pause, .reset {
   border: 2px, solid #000000;
 }
 
@@ -123,6 +186,40 @@ div {
   visibility: visible;
 }
 
+/* timer */
+.timer-container {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  z-index: 20;
+}
+#timer, #score{
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+#score {
+  z-index: 5;
+}
+
+#plusone {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  width: 120px;
+  height: 60px;
+  background-image: url(../media/scoreplusone.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 4;
+  opacity: 0;
+}
+
+/*  */
 .sprite {
   width: 96px;
   height: 96px;
@@ -135,54 +232,83 @@ div {
   background-image: url(../media/leo_idle0.png);
 }
 
-.blaster {
-  background-image: url(../media/blaster_idle0.png);
+.skeletonWizard{
+  background-image: url(../media/skeletonWizard.png);
 }
 
-.goblin {  
-  background-image: url(../media/goblin_idle0.png);
+.skeletonWizard_hurt {  
+  background-image: url(../media/skeletonWizard_hurt.png);
 }
 
-.skeleton {
-  background-image: url(../media/skeleton_idle0.png);
+.skeletonWizard_attack {  
+  background-image: url(../media/skeletonWizard_attack.png);
 }
 
-@keyframes leo_idle {
-  0%, 100% {background-image: url(../media/leo_idle0.png)};
-  50% {background-image: url(../media/leo_idle1.png)};
+.skeletonWizard_dead {  
+  background-image: url(../media/skeletonWizard_fail.png);
 }
 
-@keyframes blaster_idle {
-  0%, 100% {background-image: url(../media/blaster_idle0.png)};
-  50% {background-image: url(../media/blaster_idle1.png)};
+.leo_attack {
+  background-image: url(../media/leo_act.png);
 }
 
-@keyframes goblin_idle {
-  0%, 100% {background-image: url(../media/goblin_idle0.png)};
-  50% {background-image: url(../media/goblin_idle1.png)};
+.leo_hurt {
+  background-image: url(../media/leo_hurt.png);
 }
 
-@keyframes skeleton_idle {
-  0%, 100% {background-image: url(../media/skeleton_idle0.png)};
-  50% {background-image: url(../media/skeleton_idle1.png)};
+.leo_win {
+  background-image: url(../media/leo_win1.png);
 }
 
-@keyframes leo_walk {
-  0%, 100% {background-image: url(../media/leo_walk0.png)};
-  50% {background-image: url(../media/leo_walk1.png)};
+.candle {
+  background-image: url(../media/candle0.png);
 }
 
-@keyframes blaster_walk {
-  0%, 100% {background-image: url(../media/blaster_walk0.png)};
-  50% {background-image: url(../media/blaster_walk1.png)};
+.candle_alt {
+  background-image: url(../media/candle1.png);
 }
 
-@keyframes goblin_walk {
-  0%, 100% {background-image: url(../media/goblin_walk0.png)};
-  50% {background-image: url(../media/goblin_walk1.png)};
+.candle {
+  justify-self: end;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: 64px 64px;
+  margin: 20px;
 }
 
-@keyframes skeleton_walk {
-  0%, 100% {background-image: url(../media/skeleton_walk0.png)};
-  50% {background-image: url(../media/skeleton_walk1.png)};
+.plusone-animation { 
+  animation: plusone 0.8s ease-out forwards;
+}
+
+@keyframes plusone {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+    transform: translateY(-70px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+.banner-animation { 
+  animation: bg-shake 1s ease;
+}
+
+@keyframes bg-shake {
+  0%, 20%, 40%, 60%, 80% {
+    rotate: z 5deg;
+  
+  } 10%, 30%, 50%, 70% {    
+    rotate: z -5deg;
+  }
+  100% {
+    rotate: 0;
+  }
 }
