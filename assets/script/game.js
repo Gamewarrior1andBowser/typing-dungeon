@@ -39,7 +39,6 @@ let timestarted = false;
 let timerid = null;
 let score = 0;
 let currentword = "";
-let lastWord = "";
 
 function updateTimer() {
   if(timeleft > 0) {
@@ -105,13 +104,15 @@ input.addEventListener("input", () => {
   }
 });
 
+let remainingWords = [];
+for (let i = 0; i < words.length; i++) {
+  remainingWords.push(words[i]);
+}
+
 function signWord() {
-  let newWord = words[Math.floor(Math.random() * words.length)];
-  if (newWord === lastWord) {
-    newWord = words[Math.floor(Math.random() * words.length)];
-  }
-  
-  lastWord = newWord;
+  const index = Math.floor(Math.random() * remainingWords.length);
+  const newWord = remainingWords.splice(index, 1)[0];
+
   currentword = newWord;
   worddisplay.innerText = newWord;
 }
