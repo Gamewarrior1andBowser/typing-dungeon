@@ -25,4 +25,4 @@ The Typing Dungeon is a fun, browser-based typing game where players defeat enem
 - **assets folder**: Contains images, audio
 ---
 
-[Play now]() and see how fast you can conquer the dungeon!
+[Play now](https://gamewarrior1andbowser.github.io/typing-dungeon/) and see how fast you can conquer the dungeon!
