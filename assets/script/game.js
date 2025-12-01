@@ -52,6 +52,36 @@ function updateTimer() {
   }
 }
 
+function sort(list) {
+  //list = [[30, 60], [20, 80], [50, 20], [20, 90], [40, 50]];
+  list.sort((a, b) => b[0] - a[0]);
+  if (list.length >= 10) {
+    list.pop();
+  }
+  console.log(list);
+  let scores = [];
+  let biggestSlot = 0;
+  for (let i in list) {
+    for (let j in list) {
+      if (i != j) {
+        if (list[i][0] > list[j][0] && scores.filter(char => char == list[i]) == 0) {
+          biggestSlot = i;
+        } else if (list[i][0] == list[j][0]) {
+          if (list[i][1] > list[j][1] && scores.filter(char => char == list[i]) == 0) {
+            biggestSlot = i;
+          } else if (scores.filter(char => char == list[j]) == 0) {
+            biggestSlot = j;
+          }
+        } else if (scores.filter(char => char == list[j]) == 0) {
+          biggestSlot = j;
+        }
+      }
+    }
+    scores.push(list[biggestSlot]);
+    biggestSlot = 0;
+  }
+};
+
 function timetick() {
   animateCandles();
   if(isPaused) return;
