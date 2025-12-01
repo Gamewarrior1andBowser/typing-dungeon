@@ -314,9 +314,11 @@ div {
 }
 
 .scoreboard-banner {
+  visibility: hidden;
   background-image: url(../media/bg.png);
 }
 
 .leaderboard {
+  visibility: hidden;
   background-image: url(../media/bg.png);
 }
