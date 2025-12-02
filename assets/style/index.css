@@ -313,12 +313,29 @@ div {
   }
 }
 
-.scoreboard-banner {
-  visibility: hidden;
+/* scoreboard/leaderboard styles */
+.live-score {
+  position: fixed;
   background-image: url(../media/bg.png);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 5px;
+  z-index: 10;
+  border-radius: 10px;
 }
 
 .leaderboard {
   visibility: hidden;
+  position: fixed;
   background-image: url(../media/bg.png);
+  margin-top: 500px;
+  text-align: left;
+  padding-left: 10px;
+  z-index: 10;
+  width: min(500px, 90%);
+  max-height: 250px;
+  border: 2px solid #423522;
+  border-radius: 10px;
+  top: 60%;
+  overflow-y: auto;
 }
