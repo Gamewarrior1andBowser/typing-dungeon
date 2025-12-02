@@ -21,6 +21,8 @@ const candle1 = document.querySelector(".Candle1");
 const candle2 = document.querySelector(".Candle2");
 const enemy = document.querySelector(".Enemy")
 const plusoneani = document.getElementById("plusone");
+    const currentpoint = document.getElementById('currentpoint');
+    const prctg = document.getElementById('percentage');
 const start = new Audio('./assets/media/keyboard-typing.mp3');
 start.type = 'audio/mp3';
 const clear = new Audio('./assets/media/score.mp3');
@@ -39,6 +41,8 @@ let timestarted = false;
 let timerid = null;
 let score = 0;
 let currentword = "";
+    let hit = 0;
+    let acchit = 0;
 
 function updateTimer() {
   if(timeleft > 0) {
@@ -47,6 +51,36 @@ function updateTimer() {
     timer.innerText = "Times up!";
   }
 }
+
+function sort(list) {
+  //list = [[30, 60], [20, 80], [50, 20], [20, 90], [40, 50]];
+  list.sort((a, b) => b[0] - a[0]);
+  if (list.length >= 10) {
+    list.pop();
+  }
+  console.log(list);
+  let scores = [];
+  let biggestSlot = 0;
+  for (let i in list) {
+    for (let j in list) {
+      if (i != j) {
+        if (list[i][0] > list[j][0] && scores.filter(char => char == list[i]) == 0) {
+          biggestSlot = i;
+        } else if (list[i][0] == list[j][0]) {
+          if (list[i][1] > list[j][1] && scores.filter(char => char == list[i]) == 0) {
+            biggestSlot = i;
+          } else if (scores.filter(char => char == list[j]) == 0) {
+            biggestSlot = j;
+          }
+        } else if (scores.filter(char => char == list[j]) == 0) {
+          biggestSlot = j;
+        }
+      }
+    }
+    scores.push(list[biggestSlot]);
+    biggestSlot = 0;
+  }
+};
 
 function timetick() {
   animateCandles();
@@ -104,10 +138,18 @@ input.addEventListener("input", () => {
   }
 });
 
+
+
+
 let remainingWords = [];
 for (let i = 0; i < words.length; i++) {
   remainingWords.push(words[i]);
 }
+
+        function calPercent() {
+          const percent = (acchit / hit) * 100;
+          return percent.toFixed(2);
+        }
 
 function signWord() {
   const index = Math.floor(Math.random() * remainingWords.length);
@@ -120,14 +162,18 @@ function signWord() {
 input.addEventListener("input", () => {
   let value = String(input.value);
   if (timeleft > 0) {
+                hit++;
     if(value == currentword){
       clear.play();
       score++;
+              acchit++;
       plusoneani.classList.add('plusone-animation');
       setTimeout(() => {
         plusone.classList.remove('plusone-animation');
       }, 1000);
       scorepoint.innerText = `Score: ${score}`;
+                  prctg.innerText = `${calPercent()}% `
+                  currentpoint.innerText = `Current Points: ${score}`;
       input.value = "";
       status.innerText = "";
       signWord();
@@ -138,6 +184,7 @@ input.addEventListener("input", () => {
         enemy.classList.remove('skeletonWizard_hurt');
       }, 1000);
     } else if (currentword.includes(value)) {
+                acchit++;
     } else {
       hurt.play();
       status.innerText = "Please enter the right word!";
@@ -172,6 +219,9 @@ function resetgame() {
   clearTimeout(timerid);
   leo.classList.remove('leo_win');
   enemy.classList.remove('skeletonWizard_dead');
+                hit = 0;
+                acchit = 0;
+                prctg.innerText = '';
   isPaused = true;
   timeleft = 99;
   timestarted = false;
@@ -180,6 +230,7 @@ function resetgame() {
   currentword = "";
   timer.innerText = "Time Left: 99 s";
   scorepoint.innerText = "Score: 0";
+              currentpoint.innerText = "Current Points:"
   input.value = "";
   status.innerText = "";
   signWord();
