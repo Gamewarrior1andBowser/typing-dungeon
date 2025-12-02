@@ -333,9 +333,8 @@ div {
   padding-left: 10px;
   z-index: 10;
   width: min(500px, 90%);
-  max-height: 250px;
+  height: 200px;
   border: 2px solid #423522;
   border-radius: 10px;
-  top: 60%;
-  overflow-y: auto;
+  top: 55%;
 }
