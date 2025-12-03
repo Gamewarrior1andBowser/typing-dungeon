@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+    <link rel="stylesheet" href="./assets/style/index.css" />
+    <script src="./assets/script/game.js" type="module"></script>
+    <link rel="icon" href="./assets/media/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <title>Typing Dungeon</title>
+  </head>
+  <body>
+    <header>
+      <button class="pause"><i class="fa-solid fa-pause"></i></button>
+      <button class="reset"><i class="fa-solid fa-rotate-right"></i></button>
+      <div class="title">
+        <i class="t"></i><h1>yping </h1><i class="d"></i><h1>ungeon</h1>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="timer-container">
+          <p id="timer">Time Left: 20 s</p>
+          <p id="score">Score: 0</p>
+        </div>
+        <p id="plusone"></p>
+        <div class="menu"><div class="grid">
+          <div class="title">
+            <i class="t"></i><h1>yping </h1><i class="d"></i><h1>ungeon</h1>
+          </div>
+          <h2>Paused</h2>
+        </div></div>
+
+        <div class="live-score">
+          <p id="currentpoint">Current Points:</p>
+          <p id="percentage"></p>
+        </div>
+
+        <div class="text-banner">
+          <div class="word-display-banner">
+            <div><h1>Current word:</h1>
+            <p id="word-display"></p></div>
+            <input type="text" id="textinput">
+            <p id="status"></p>
+          </div>
+        </div>
+
+        <div class="leaderboard">
+          <p class="topone scoreline"></p>
+          <p class="toptwo scoreline"></p>
+          <p class="topthree scoreline"></p>
+          <p class="topfour scoreline"></p>
+          <p class="topfive scoreline"></p>
+          <p class="topsix scoreline"></p>
+          <p class="topseven scoreline"></p>
+          <p class="topeight scoreline"></p>
+          <p class="topnine scoreline"></p>
+        </div>
+
+        <div class="map">
+          <i class="Candle1 candle"></i>
+          <i class="Leo sprite leo"></i>
+          <i class="Enemy sprite skeletonWizard"></i>
+          <i class="Candle2 candle"></i>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
