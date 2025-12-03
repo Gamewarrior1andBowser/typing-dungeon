@@ -17,6 +17,7 @@ const status = document.getElementById("status");
 const reset = document.querySelector(".reset");
 const timer = document.getElementById("timer");
 const leo = document.querySelector(".Leo");
+const leaderboard = document.querySelector(".leaderboard");
 const candle1 = document.querySelector(".Candle1");
 const candle2 = document.querySelector(".Candle2");
 const enemy = document.querySelector(".Enemy")
@@ -36,7 +37,7 @@ hurt.type = 'audio/mp3';
 const win = new Audio('./assets/media/winning.mp3');
 win.type = 'audio/mp3';
 
-let timeleft = 99;
+let timeleft = 20;
 let timestarted = false;
 let timerid = null;
 let score = 0;
@@ -96,6 +97,7 @@ function timetick() {
     background.pause();
     win.play();
     timerid = null;
+    leaderboard.classList.add('visible');
     leo.classList.add('leo_win');
     enemy.classList.add('skeletonWizard_dead');
   }
@@ -219,16 +221,17 @@ function resetgame() {
   clearTimeout(timerid);
   leo.classList.remove('leo_win');
   enemy.classList.remove('skeletonWizard_dead');
+  leaderboard.classList.remove('visible');
                 hit = 0;
                 acchit = 0;
                 prctg.innerText = '';
   isPaused = true;
-  timeleft = 99;
+  timeleft = 20;
   timestarted = false;
   timerid = null;
   score = 0;
   currentword = "";
-  timer.innerText = "Time Left: 99 s";
+  timer.innerText = "Time Left: 20 s";
   scorepoint.innerText = "Score: 0";
               currentpoint.innerText = "Current Points:"
   input.value = "";
