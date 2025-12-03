@@ -20,7 +20,16 @@ const leo = document.querySelector(".Leo");
 const leaderboard = document.querySelector(".leaderboard");
 const candle1 = document.querySelector(".Candle1");
 const candle2 = document.querySelector(".Candle2");
-const enemy = document.querySelector(".Enemy")
+const enemy = document.querySelector(".Enemy");
+const one = document.querySelector(".topone");
+const two = document.querySelector(".toptwo");
+const three = document.querySelector(".topthree");
+const four = document.querySelector(".topfour");
+const five = document.querySelector(".topfive");
+const six = document.querySelector(".topsix");
+const seven = document.querySelector(".topseven");
+const eight = document.querySelector(".topeight");
+const nine = document.querySelector(".topnine");
 const plusoneani = document.getElementById("plusone");
     const currentpoint = document.getElementById('currentpoint');
     const prctg = document.getElementById('percentage');
@@ -51,6 +60,41 @@ function updateTimer() {
   } else {
     timer.innerText = "Times up!";
   }
+}
+
+function updateScores() {
+  //get list via the code below.
+  //list = sessionStorage.getItem(decodeURIComponent()); doesn't fully work.
+  list = list.split(', ');
+  list.push([score, calPercent()]);
+  list = sort(list);
+  one.innerText = list[0];
+  if (list.length > 1) {
+    two.innerText = list[1];
+  }
+  if (list.length > 2) {
+    three.innerText = list[2];
+  }
+  if (list.length > 3) {
+    four.innerText = list[3];
+  }
+  if (list.length > 4) {
+    five.innerText = list[4];
+  }
+  if (list.length > 5) {
+    six.innerText = list[5];
+  }
+  if (list.length > 6) {
+    seven.innerText = list[6];
+  }
+  if (list.length > 7) {
+    eight.innerText = list[7];
+  }
+  if (list.length > 8) {
+    nine.innerText = list[8];
+  }
+  list = String(list);
+  sessionStorage.setItem(encodeURIComponent(list));
 }
 
 function sort(list) {
