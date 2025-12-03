@@ -46,7 +46,7 @@ hurt.type = 'audio/mp3';
 const win = new Audio('./assets/media/winning.mp3');
 win.type = 'audio/mp3';
 
-let timeleft = 5;
+let timeleft = 20;
 let timestarted = false;
 let timerid = null;
 let score = 0;
@@ -93,7 +93,12 @@ function updateScores() {
 
 function sort(list) {
   //list = [[30, 60], [20, 80], [50, 20], [20, 90], [40, 50]];
-  list.sort((a, b) => b[0] - a[0]);
+  list.sort((a, b) => {
+    b[0] - a[0];
+    if(a[0] === b[0]) {
+      return b[1] - a[1];
+    }
+  });
   if (list.length >= 10) {
     list.pop();
   }
@@ -244,7 +249,7 @@ function resetgame() {
                 acchit = 0;
                 prctg.innerText = '';
   isPaused = true;
-  timeleft = 5;
+  timeleft = 20;
   timestarted = false;
   timerid = null;
   score = 0;
