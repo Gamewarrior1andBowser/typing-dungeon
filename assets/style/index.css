@@ -182,9 +182,7 @@ div {
   display: flex;
 }
 
-.visible {
-  visibility: visible;
-}
+
 
 /* timer */
 .timer-container {
@@ -322,9 +320,12 @@ div {
   margin-top: 5px;
   z-index: 10;
   border-radius: 10px;
+  border: 3px, solid #423522;
 }
 
 .leaderboard {
+  display: grid;
+  grid-template-columns: repeat(1, 0fr);
   visibility: hidden;
   position: fixed;
   background-image: url(../media/bg.png);
@@ -336,5 +337,12 @@ div {
   height: 200px;
   border: 2px solid #423522;
   border-radius: 10px;
-  top: 55%;
+  background-color: #b9895b;
+  padding: 10px;
+  border: 3px, solid #423522;
+  border-radius: 20px;
+}
+
+.visible {
+  visibility: visible;
 }
